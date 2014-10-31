@@ -1,0 +1,21 @@
+#project-container
+{
+	margin-top: 10px
+}
+
+.thumbnail{
+    width: 340px;
+    height: 450px;
+    overflow: auto;
+}
+
+.thumbnail img{
+	width: 300px;
+    height: 200px;
+}
+
+
+.img-resize{
+	width: 50px;
+    height: 50px;
+}

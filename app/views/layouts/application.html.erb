@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Techstorm</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+<!-- bootstrap & fontawesome -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/stylesheets/ace-fonts.css" />
+<link rel="stylesheet" href="../../assets/stylesheets/ace.min.css" id="main-ace-style" />
+<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/stylesheets/ace-part2.min.css" /><![endif]-->
+<link rel="stylesheet" href="../../assets/stylesheets/ace-skins.min.css" />
+<link rel="stylesheet" href="../../assets/stylesheets/ace-rtl.min.css" />
+<link rel="stylesheet" type="text/css" href="../../assets/stylesheets/main.css">
+<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/stylesheets/ace-ie.min.css" /><![endif]-->
+
+
+</head>
+<body>
+
+<!--Navigation bar-->
+	<div id="navbar" class="navbar navbar-default">
+		<script type="text/javascript">
+		try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+		</script>
+		<div class="navbar-container" id="navbar-container">
+
+			<!--Toggle Sidebar Button (with three lines)-->
+			<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
+				<span class="sr-only">Toggle sidebar</span> <!--Invisible-->
+				<span class="icon-bar"></span><!--Eachline in the button-->
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+			<!--Logo/Name button, next to toggle sidebar button-->
+			<div class="navbar-header pull-left">
+				<a href="index.html" class="navbar-brand"><!--Clickable-->
+					<small>
+						<i class="fa fa-cloud"></i><!--logo-->
+						TechStorm
+					</small>
+				</a>
+			</div>
+
+			<!-- Buttons to the right-->
+			<div class="navbar-buttons navbar-header pull-right" role="navigation">
+				<ul class="nav ace-nav">
+
+					<!--Grey button-->
+					<li class="grey"> <!--Class changes from grey to grey-open-->
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<i class="ace-icon fa fa-tasks"></i>
+							
+						</a>
+
+						<!--Items in grey dropdown-->
+						<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<li class="dropdown-header">
+								<i class="ace-icon fa fa-check"></i>
+								4 Tasks to complete
+							</li>
+
+							<li>
+								<a href="#"> <!--TODO Link to task-->
+									<div class="clearfix"> <!--TODO Learn clearfix-->
+										<span class="pull-left">Task Name</span>
+										<span class="pull-right">65%</span>
+									</div>
+
+									<div class="progress progress-mini">
+										<div style="width:65%" class="progress-bar"></div>
+									</div>
+								</a>
+							</li>
+
+							<li class="dropdown-footer">
+								<a href="#">
+									See tasks with details
+									<i class="ace-icon fa fa-arrow-right"></i>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<!--Purple button-->
+					<li class="purple">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<i class="ace-icon fa fa-bell"></i>
+							
+						</a>
+
+						<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+							<li class="dropdown-header">
+								<i class="ace-icon fa fa-exclamation-triangle"></i>
+								8 Notifications
+							</li>
+
+							<li>
+								<a href="#">
+									<div class="clearfix">
+										<span class="pull-left">
+											<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
+											New Comments
+										</span>
+										<span class="pull-right badge badge-info">+12</span>
+									</div>
+								</a>
+							</li>
+
+							<li class="dropdown-footer">
+								<a href="#">
+									See all notifications
+									<i class="ace-icon fa fa-arrow-right"></i>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="green">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<i class="ace-icon fa fa-envelope"></i>
+							
+						</a>
+
+						<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<li class="dropdown-header">
+								<i class="ace-icon fa fa-envelope-o"></i>
+								5 Messages
+							</li>
+
+							<li class="dropdown-content">
+								<ul class="dropdown-menu dropdown-navbar">
+									<li>
+										<a href="#">
+											<img src="../assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+											<span class="msg-body">
+												<span class="msg-title">
+													<span class="blue">Alex:</span>
+													Message Summary
+												</span>
+
+												<span class="msg-time">
+													<i class="ace-icon fa fa-clock-o"></i>
+													<span>Message Time</span>
+												</span>
+											</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="dropdown-footer">
+								<a href="inbox.html">
+									See all messages
+									<i class="ace-icon fa fa-arrow-right"></i>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<!-- USER BUTTON -->
+					<li class="light-blue">
+						<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+							<span class="user-info">
+								<small>Welcome,</small>
+								PERSON
+							</span>
+
+							<i class="ace-icon fa fa-caret-down"></i>
+						</a>
+
+						<!--USER DROPDOWN LIST-->
+						<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+							<li>Log In
+								<%= form_for(:user, :url=> {:action => 'attempt_login'}) do |f|%>
+								<%= f.text_field(:email) %>
+								<%= f.text_field(:password) %>
+								<%= submit_tag("Log In")%>
+								<%end%>
+							</li>
+							<li>Sign Up
+								<%= form_for(:user, :url=> {:action => 'signup'}) do |f|%>
+								<%= f.text_field(:first_name) %>
+								<%= f.text_field(:last_name) %>
+								<%= f.text_field(:email) %>
+								<%= f.text_field(:password) %>
+								<%= f.text_field(:confirm_password) %>
+								<%= submit_tag("Sign Up") %>
+								<%end%>
+								
+							</li>
+
+							<li class="divider"></li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+<%= yield %>
+
+
+<!--[if !IE]> -->
+<script type="text/javascript">
+window.jQuery || document.write("<script src='../../assets/javascripts/jquery.min.js'>"+"<"+"/script>");
+</script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='../../assets/javascripts/jquery1x.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+if('ontouchstart' in document.documentElement) document.write("<script src='..assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="../../assets/javascripts/bootstrap.min.js"></script>
+<script src="../../assets/javascripts/ace-elements.min.js"></script>
+<script src="../../assets/javascripts/ace.min.js"></script>
+<script src="../../assets/javascripts/ace-extra.min.js"></script>
+<!--[if lte IE 8]>
+<script src="../../assets/javascripts/html5shiv.min.js"></script>
+<script src="../../assets/javascripts/respond.min.js"></script>
+<![endif]-->
+
+<link rel="stylesheet" href="http://assets/css/ace.onpage-help.css" />
+<link rel="stylesheet" href="..http://assets/js/themes/sunburst.css" />
+
+</body>
+</html>

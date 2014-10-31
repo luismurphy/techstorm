@@ -1,0 +1,13 @@
+<%page_title = "User Menu"%>
+
+<div class="menu">
+<h2>Admin Menu</h2>
+<div class="identity">Logged in as: </div>
+<ul>
+<li><%=link_to("Manage Projects", :controller=> '#')%></li>
+<li><%=link_to("Manage Pages", :controller=> '#')%></li>
+<li><%=link_to("Manage Sections", :controller=> '#')%></li>
+<li><%=link_to("Manage Users", :controller=> '#')%></li>
+<li><%=link_to("Logout", :controller=> 'logout')%></li>
+</ul>
+</div>
