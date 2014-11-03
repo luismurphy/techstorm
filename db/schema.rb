@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031080435) do
+ActiveRecord::Schema.define(version: 20141103011237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collaborates", primary_key: "uid", force: true do |t|
+    t.integer "pid", null: false
+  end
+
+  create_table "comments_on", primary_key: "uid", force: true do |t|
+    t.integer  "pid",     null: false
+    t.datetime "date"
+    t.text     "comment"
+  end
+
+  create_table "follows", primary_key: "uid", force: true do |t|
+    t.integer "pid", null: false
+  end
+
+  create_table "has_skills", primary_key: "uid", force: true do |t|
+    t.string "skill", limit: 30, null: false
+  end
+
+  create_table "has_tags", primary_key: "pid", force: true do |t|
+    t.string "tag", limit: 30, null: false
+  end
+
+  create_table "has_tasks", primary_key: "user1", force: true do |t|
+    t.integer "user2",   null: false
+    t.boolean "pending"
+  end
 
   create_table "messages", force: true do |t|
     t.string   "title",     limit: 40
@@ -30,10 +57,22 @@ ActiveRecord::Schema.define(version: 20141031080435) do
     t.text     "description"
   end
 
+  create_table "requires_skills", primary_key: "pid", force: true do |t|
+    t.string "skill", limit: 30, null: false
+  end
+
+  create_table "sends", primary_key: "sender", force: true do |t|
+    t.integer "receiver", null: false
+    t.integer "mid",      null: false
+  end
+
   create_table "skills", primary_key: "skill_name", force: true do |t|
   end
 
-  create_table "tasks", primary_key: "uid", force: true do |t|
+  create_table "tags", primary_key: "tag_name", force: true do |t|
+  end
+
+  create_table "tasks", primary_key: "tid", force: true do |t|
     t.integer "pid",                    null: false
     t.string  "task_name",   limit: 30
     t.text    "description"
@@ -53,5 +92,10 @@ ActiveRecord::Schema.define(version: 20141031080435) do
   end
 
   add_index "users", ["email"], name: "users_email_key", unique: true, using: :btree
+
+  create_table "works_on", primary_key: "uid", force: true do |t|
+    t.integer "tid", null: false
+    t.integer "pid", null: false
+  end
 
 end
