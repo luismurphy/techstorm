@@ -6,10 +6,10 @@ class ProjectController < ApplicationController
   end
 
   def index
-  	@users = User.sorted
+  	@projects = Project.alphasort
   end
 
   def show
-  	@user = User.find(params[:id])
+  	@project = Project.find(params[:id])
   end
 end
