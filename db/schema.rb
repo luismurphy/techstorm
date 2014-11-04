@@ -13,71 +13,88 @@
 
 ActiveRecord::Schema.define(version: 20141104002028) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "collaborates", primary_key: "uid", force: true do |t|
-    t.integer "pid", null: false
+    t.integer "pid"
   end
+
+  add_index "collaborates", ["uid", "pid"], name: "sqlite_autoindex_collaborates_1", unique: true
 
   create_table "comments_on", primary_key: "uid", force: true do |t|
-    t.integer  "pid",     null: false
-    t.datetime "date"
-    t.text     "comment"
+    t.integer   "pid"
+    t.timestamp "date"
+    t.text      "comment"
   end
+
+  add_index "comments_on", ["uid", "pid"], name: "sqlite_autoindex_comments_on_1", unique: true
 
   create_table "follows", primary_key: "uid", force: true do |t|
-    t.integer "pid", null: false
+    t.integer "pid"
   end
+
+  add_index "follows", ["uid", "pid"], name: "sqlite_autoindex_follows_1", unique: true
 
   create_table "has_skills", primary_key: "uid", force: true do |t|
-    t.string "skill", limit: 30, null: false
+    t.string "skill", limit: 30
   end
+
+  add_index "has_skills", ["uid", "skill"], name: "sqlite_autoindex_has_skills_1", unique: true
 
   create_table "has_tags", primary_key: "pid", force: true do |t|
-    t.string "tag", limit: 30, null: false
+    t.string "tag", limit: 30
   end
 
+  add_index "has_tags", ["pid", "tag"], name: "sqlite_autoindex_has_tags_1", unique: true
+
   create_table "has_tasks", primary_key: "user1", force: true do |t|
-    t.integer "user2",   null: false
+    t.integer "user2"
     t.boolean "pending"
   end
 
+  add_index "has_tasks", ["user1", "user2"], name: "sqlite_autoindex_has_tasks_1", unique: true
+
   create_table "messages", force: true do |t|
-    t.string   "title",     limit: 40
-    t.text     "content"
-    t.datetime "send_time"
-    t.datetime "seen_time"
+    t.string    "title",     limit: 40
+    t.text      "content"
+    t.timestamp "send_time"
+    t.timestamp "seen_time"
   end
+
+  add_index "messages", ["id"], name: "sqlite_autoindex_messages_1", unique: true
 
   create_table "projects", force: true do |t|
-    t.integer  "creator"
-    t.datetime "created_at"
-    t.string   "name",        limit: 20
-    t.text     "description"
+    t.integer   "creator"
+    t.timestamp "created_at"
+    t.string    "name",        limit: 20
+    t.text      "description"
   end
+
+  add_index "projects", ["id"], name: "sqlite_autoindex_projects_1", unique: true
 
   create_table "requires_skills", primary_key: "pid", force: true do |t|
-    t.string "skill", limit: 30, null: false
+    t.string "skill", limit: 30
   end
 
+  add_index "requires_skills", ["pid", "skill"], name: "sqlite_autoindex_requires_skills_1", unique: true
+
   create_table "sends", primary_key: "sender", force: true do |t|
-    t.integer "receiver", null: false
-    t.integer "mid",      null: false
+    t.integer "receiver"
+    t.integer "mid"
   end
+
+  add_index "sends", ["sender", "receiver", "mid"], name: "sqlite_autoindex_sends_1", unique: true
 
   create_table "skills", primary_key: "skill_name", force: true do |t|
   end
 
+  add_index "skills", ["skill_name"], name: "sqlite_autoindex_skills_1", unique: true
+
   create_table "tags", primary_key: "tag_name", force: true do |t|
   end
 
-  create_table "tasks", primary_key: "tid", force: true do |t|
-    t.integer "pid",                    null: false
-    t.string  "task_name",   limit: 30
-    t.text    "description"
-    t.integer "completed"
-  end
+  add_index "tags", ["tag_name"], name: "sqlite_autoindex_tags_1", unique: true
+
+# Could not dump table "tasks" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: true do |t|
     t.string  "email",           limit: 40
@@ -97,11 +114,14 @@ ActiveRecord::Schema.define(version: 20141104002028) do
     t.text    "github"
   end
 
-  add_index "users", ["email"], name: "users_email_key", unique: true, using: :btree
+  add_index "users", ["email"], name: "sqlite_autoindex_users_2", unique: true
+  add_index "users", ["id"], name: "sqlite_autoindex_users_1", unique: true
 
   create_table "works_on", primary_key: "uid", force: true do |t|
-    t.integer "tid", null: false
-    t.integer "pid", null: false
+    t.integer "tid"
+    t.integer "pid"
   end
+
+  add_index "works_on", ["uid", "tid", "pid"], name: "sqlite_autoindex_works_on_1", unique: true
 
 end

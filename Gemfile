@@ -39,3 +39,7 @@ gem 'bcrypt'
 # gem 'debugger', group: [:development, :test]
 
 gem 'less-rails-bootstrap'
+
+group :development, :test do
+  gem 'sqlite3'
+end
