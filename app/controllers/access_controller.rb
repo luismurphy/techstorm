@@ -8,20 +8,20 @@ class AccessController < ApplicationController
   end
   
   def attempt_login
-    if params[:username].present? && params[:password].present?
-      found_user = User.where(:username => params[:username]).first
+    if params[:user][:email].present? && params[:user][:password].present?
+      found_user = User.where(:email => params[:user][:email]).first
       if found_user
-        authorized_user = found_user.authenticate(params[:password])
+        authorized_user = found_user.authenticate(params[:user][:password])
       end
     end
     if authorized_user
       # mark user as logged in
       
       flash[:notice] = "You are now logged in."
-      redirect_to(:action => 'index')
+      redirect_to(:controller => 'user', :action => 'show')
     else
       flash[:notice] = "Invalid username/password combination."
-      redirect_to(:action => 'login')
+      redirect_to(:controller => 'public', :action => 'index')
     end
   end
 
