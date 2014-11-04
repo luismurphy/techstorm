@@ -18,7 +18,7 @@ class AccessController < ApplicationController
       # mark user as logged in
       
       flash[:notice] = "You are now logged in."
-      redirect_to(:controller => 'user', :action => 'show')
+      redirect_to(:controller => 'user', :action => 'show', :id => authorized_user.id)
     else
       flash[:notice] = "Invalid username/password combination."
       redirect_to(:controller => 'public', :action => 'index')
