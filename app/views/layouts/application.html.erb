@@ -27,7 +27,9 @@
 <body>
 
 <!--Navigation bar-->
-	
+
+
+
 
 <%= yield %>
 
@@ -53,6 +55,11 @@ if('ontouchstart' in document.documentElement) document.write("<script src='..as
 <script src="../../assets/javascripts/ace-elements.min.js"></script>
 <script src="../../assets/javascripts/ace.min.js"></script>
 <script src="../../assets/javascripts/ace-extra.min.js"></script>
+<script type="text/javascript">
+    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+        e.stopPropagation();
+    });
+</script>
 <!--[if lte IE 8]>
 <script src="../../assets/javascripts/html5shiv.min.js"></script>
 <script src="../../assets/javascripts/respond.min.js"></script>

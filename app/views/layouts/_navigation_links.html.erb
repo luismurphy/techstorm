@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if current_user %>
 
 
 <li class="grey"> <!--Class changes from grey to grey-open-->
@@ -134,8 +134,9 @@
 <% else %>
 
 
-<div class="form-imputs-navbar">
-	<%= form_for(:user, :url=> {:action => 'attempt_login'}) do |f| %>
+
+<div class="form-imputs-navbar pull-right ">
+	<%= form_for(:user, :url=> {:controller => 'access', :action => 'attempt_login'}) do |f|%>
 
 	<%= f.text_field :email, :placeholder => "email" %>
 	
@@ -143,9 +144,18 @@
 	
 	
 	<%= f.submit 'Sign in' %>
-	<%= link_to "Forgot your password?", new_password_path(:user) %>
-
+	
+	
 	<% end %>
+
+	
 </div>
+
+<div class= "form-imputs-navbar pull-left">
+	<%= button_to "Sign Up", { :controller => 'user', :action =>'new', :class => 'action new'}%>
+</div>
+
+	
+
 
 <% end %>

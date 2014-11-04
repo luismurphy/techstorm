@@ -36,7 +36,7 @@ gem 'bcrypt'
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+# gem 'deb ugger', group: [:development, :test]
 
 gem 'less-rails-bootstrap'
 
